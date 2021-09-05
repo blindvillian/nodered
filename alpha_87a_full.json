@@ -1,0 +1,2582 @@
+[
+    {
+        "id": "23fb3158e132e84d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4781d4365cce0eea",
+        "type": "serial in",
+        "z": "23fb3158e132e84d",
+        "name": "Serial IN from Alpha 87A",
+        "serial": "2b1f54984092d2bb",
+        "x": 130,
+        "y": 1060,
+        "wires": [
+            [
+                "442727ab05d478dc"
+            ]
+        ]
+    },
+    {
+        "id": "71671e3df5feb2e0",
+        "type": "serial out",
+        "z": "23fb3158e132e84d",
+        "name": "Serial OUT to Alpha 87A",
+        "serial": "2b1f54984092d2bb",
+        "x": 2970,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "f2418f70cb3cd0be",
+        "type": "ui_switch",
+        "z": "23fb3158e132e84d",
+        "name": "Alpha 87A Power",
+        "label": "Power On/Off",
+        "tooltip": "",
+        "group": "8495b55a41b65a7f",
+        "order": 1,
+        "width": "5",
+        "height": "4",
+        "passthru": false,
+        "decouple": "true",
+        "topic": "Alpha 87A Power",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-lg",
+        "oncolor": "#66ff66",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-lg",
+        "offcolor": "{{colour}}",
+        "animate": true,
+        "x": 1270,
+        "y": 580,
+        "wires": [
+            [
+                "84172c63d079ad08"
+            ]
+        ]
+    },
+    {
+        "id": "84172c63d079ad08",
+        "type": "switch",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1470,
+        "y": 580,
+        "wires": [
+            [
+                "0545edad958f4f2c"
+            ],
+            [
+                "b673dc57b2517df7"
+            ]
+        ]
+    },
+    {
+        "id": "0545edad958f4f2c",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Power On",
+        "func": "// msg.payload = \"STAT\\r\\n\"\nmsg.payload = \"AC ON\\r\\n\"\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 560,
+        "wires": [
+            [
+                "7256c9fd1c5b739b",
+                "71671e3df5feb2e0"
+            ]
+        ]
+    },
+    {
+        "id": "b673dc57b2517df7",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Power Off",
+        "func": "\nmsg.payload = \"AC OFF\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 640,
+        "wires": [
+            [
+                "55c6fcd286ea29fa",
+                "71671e3df5feb2e0",
+                "86d106a9f6c699ed",
+                "012aca8df6481613"
+            ]
+        ]
+    },
+    {
+        "id": "7256c9fd1c5b739b",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "open",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1860,
+        "y": 540,
+        "wires": [
+            [
+                "3aef13236e4a7462",
+                "e1563be442ad3e02",
+                "0002cd80e80a6340",
+                "1e912eb2cfd1398b",
+                "7f6496cb0cda05a3"
+            ]
+        ]
+    },
+    {
+        "id": "55c6fcd286ea29fa",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "close",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "control",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1820,
+        "y": 640,
+        "wires": [
+            [
+                "3aef13236e4a7462",
+                "e1563be442ad3e02",
+                "0002cd80e80a6340",
+                "1e912eb2cfd1398b",
+                "7f6496cb0cda05a3"
+            ]
+        ]
+    },
+    {
+        "id": "4369759140525ea0",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2650,
+        "y": 1060,
+        "wires": [
+            [
+                "71671e3df5feb2e0",
+                "916fdf15900a5fa9"
+            ]
+        ]
+    },
+    {
+        "id": "442727ab05d478dc",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "To String",
+        "func": "\nmsg.payload = msg.payload.toString('utf8');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1060,
+        "wires": [
+            [
+                "96711653797adbaf",
+                "12d5b38b99bc4482"
+            ]
+        ]
+    },
+    {
+        "id": "96711653797adbaf",
+        "type": "switch",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Incoming Msg",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "HV = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "MODE = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "STATE = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "FWD = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "RFL = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "AMPLIFIER IS ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "3 MINUTE WARM-UP",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "IP = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "IG = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "STATE = OFF",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "FREQUENCY = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "AUTOTUNE",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "LOAD = ",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "TUNE = ",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 14,
+        "x": 540,
+        "y": 1060,
+        "wires": [
+            [
+                "c047fc55073bdc6c"
+            ],
+            [
+                "c8d9aa4b4e0a013d"
+            ],
+            [
+                "5ec9ad0a1e09d25e"
+            ],
+            [
+                "1e503f0b7f2d2748"
+            ],
+            [
+                "4519a70934d066d1"
+            ],
+            [
+                "27e3f90be3e3bf3d"
+            ],
+            [
+                "4e5c5e9358221a57"
+            ],
+            [
+                "cf86de34ffc9d162"
+            ],
+            [
+                "4a1d36169cf540c5"
+            ],
+            [
+                "dd5b06c0d6283e65"
+            ],
+            [
+                "051511596eee722f"
+            ],
+            [
+                "7ddd8dbd1e39c376"
+            ],
+            [
+                "d240e5c35504336b"
+            ],
+            [
+                "2bbe722a3eb81a84"
+            ]
+        ]
+    },
+    {
+        "id": "c047fc55073bdc6c",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse HV",
+        "func": "\nif (msg.volts != undefined) {\n    msg.payload = msg.volts;\n    return msg;\n}\n\nvolts = parseInt(msg.payload.substr(4,9))\nmsg.payload = volts;\n\nif (isNaN(msg.payload)) {\n    return;   \n} \n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 920,
+        "wires": [
+            [
+                "5998c38d071a1f3f"
+            ]
+        ]
+    },
+    {
+        "id": "5998c38d071a1f3f",
+        "type": "ui_level",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "order": 11,
+        "width": "5",
+        "height": "3",
+        "name": "Meter",
+        "label": "Plate mA:",
+        "colorHi": "#e60000",
+        "colorWarn": "#ff9900",
+        "colorNormal": "#00b33c",
+        "colorOff": "#595959",
+        "min": "0",
+        "max": "3000",
+        "segWarn": "2800",
+        "segHigh": "2900",
+        "unit": "",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "reactive",
+        "shape": "3",
+        "colorschema": "fixed",
+        "textoptions": "custom",
+        "colorText": "#eeeeee",
+        "fontLabel": ".9",
+        "fontValue": ".9",
+        "fontSmall": ".8",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": true,
+        "property": "payload",
+        "peaktime": "1000",
+        "x": 1510,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "86d106a9f6c699ed",
+        "type": "delay",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 1100,
+        "y": 880,
+        "wires": [
+            [
+                "4ff5673e914e2d7c",
+                "4b5749db70e5d852",
+                "63aea0b7b4ad1ae3"
+            ]
+        ]
+    },
+    {
+        "id": "4ff5673e914e2d7c",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "Set PA Volts to --",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1310,
+        "y": 880,
+        "wires": [
+            [
+                "5998c38d071a1f3f"
+            ]
+        ]
+    },
+    {
+        "id": "a4bc518e67d55398",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "d": true,
+        "name": "Trigger Query : STAT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 2120,
+        "y": 200,
+        "wires": [
+            [
+                "0002cd80e80a6340"
+            ]
+        ]
+    },
+    {
+        "id": "0002cd80e80a6340",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "closed",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2630,
+        "y": 200,
+        "wires": [
+            [
+                "0a0d7d6e48ff6212"
+            ]
+        ]
+    },
+    {
+        "id": "0a0d7d6e48ff6212",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : STAT",
+        "func": "msg.payload = \"STAT\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2790,
+        "y": 200,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "e1563be442ad3e02",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2630,
+        "y": 260,
+        "wires": [
+            [
+                "5437947b8577afe9"
+            ]
+        ]
+    },
+    {
+        "id": "5437947b8577afe9",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : METER",
+        "func": "\nmsg.payload = \"METER\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2800,
+        "y": 260,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "7a1116edcd50d8c0",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "name": "Trigger Query : Meter ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": ".5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 2120,
+        "y": 260,
+        "wires": [
+            [
+                "e1563be442ad3e02"
+            ]
+        ]
+    },
+    {
+        "id": "81556e0ea17afa32",
+        "type": "ui_switch",
+        "z": "23fb3158e132e84d",
+        "name": "OP/STBY In",
+        "label": "Mode: <font color = {{msg.color}}>{{msg.topic}}",
+        "tooltip": "",
+        "group": "8495b55a41b65a7f",
+        "order": 2,
+        "width": "5",
+        "height": "4",
+        "passthru": false,
+        "decouple": "true",
+        "topic": "",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "fa-toggle-on fa-lg",
+        "oncolor": "#66ff66",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "fa-toggle-off fa-lg",
+        "offcolor": "grey",
+        "animate": true,
+        "x": 1530,
+        "y": 1060,
+        "wires": [
+            [
+                "5fdce49defef441e"
+            ]
+        ]
+    },
+    {
+        "id": "8625dff36abd4074",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set Mode",
+        "func": "// return msg;\n/*\nvar opmode = msg.payload;\nvar status = '';\nswitch(opmode) {\ncase 0:\n    status = \"StandBy\";\n    color = \"yellow\";\n    //flow.set('AmpOn',false);\nbreak;\ncase 1:\n    color = \"#66ff66\";\n    status = \"Operate\";\n    //flow.set('AmpOn',true);\n}\n*/\n\nvar rawMode = msg.payload;\nvar status = '';\nvar opMode = 0;\nvar acMode = 0;\nswitch (rawMode) {\n    case 'WARMUP':\n        status = 'Warm Up';\n        color = 'red';\n        acMode = 1;\n        break;\n    case 'STANDBY':\n        status = 'Standby';\n        color = 'yellow';\n        acMode = 1;\n        break;\n    case 'OPERATE':\n        status = 'Operate';        \n        color = '#66ff66';\n        opMode = 1;\n        acMode = 1;\n        break;\n    default:\n        status = 'Power Off';\n        color = 'gray';\n}\n\nreturn  {topic: status, payload: opMode, color: color, acMode: acMode};\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 1060,
+        "wires": [
+            [
+                "81556e0ea17afa32",
+                "1f06704a63f507b5"
+            ]
+        ]
+    },
+    {
+        "id": "5ec9ad0a1e09d25e",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Op Mode",
+        "func": "var statestr = parseInt(msg.payload.indexOf('STATE = '));\n\n// msg.payload = (msg.payload.substr(statestr + 8, 7)) == 'OPERATE' ? 1 : 0;\nmsg.payload = msg.payload.substr(statestr + 8, 7).trim();\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1060,
+        "wires": [
+            [
+                "8625dff36abd4074"
+            ]
+        ]
+    },
+    {
+        "id": "5fdce49defef441e",
+        "type": "switch",
+        "z": "23fb3158e132e84d",
+        "name": "OP/STBY",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1700,
+        "y": 1060,
+        "wires": [
+            [
+                "6adc32c5bbf62ea6"
+            ],
+            [
+                "b9bc1b5af9c91e32"
+            ]
+        ]
+    },
+    {
+        "id": "6adc32c5bbf62ea6",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Operate",
+        "func": "msg.payload = \"OPER ON\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 1040,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "b9bc1b5af9c91e32",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Standby",
+        "func": "msg.payload = \"OPER OFF\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 1080,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "41a92a45aec7622a",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": " Set Power to ON",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 540,
+        "wires": [
+            [
+                "f2418f70cb3cd0be"
+            ]
+        ]
+    },
+    {
+        "id": "c05ae6296c934d01",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "Set Power to OFF",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 600,
+        "wires": [
+            [
+                "f2418f70cb3cd0be"
+            ]
+        ]
+    },
+    {
+        "id": "1f06704a63f507b5",
+        "type": "switch",
+        "z": "23fb3158e132e84d",
+        "name": "Set AC Power Status",
+        "property": "acMode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 720,
+        "y": 560,
+        "wires": [
+            [
+                "41a92a45aec7622a"
+            ],
+            [
+                "c05ae6296c934d01"
+            ]
+        ]
+    },
+    {
+        "id": "fcd84c9c0ac4e8ac",
+        "type": "ui_level",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "order": 6,
+        "width": "5",
+        "height": "3",
+        "name": "Power Out",
+        "label": "Po: ",
+        "colorHi": "#e60000",
+        "colorWarn": "#ff9900",
+        "colorNormal": "#00b33c",
+        "colorOff": "#595959",
+        "min": 0,
+        "max": "1800",
+        "segWarn": "1400",
+        "segHigh": "1500",
+        "unit": "W",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "reactive",
+        "shape": "3",
+        "colorschema": "fixed",
+        "textoptions": "custom",
+        "colorText": "#eeeeee",
+        "fontLabel": ".9",
+        "fontValue": ".9",
+        "fontSmall": ".8",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": true,
+        "property": "payload",
+        "peaktime": "1000",
+        "x": 1530,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "612fcded77b845f4",
+        "type": "ui_level",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "order": 7,
+        "width": "5",
+        "height": "3",
+        "name": "Power Reflected",
+        "label": "Pr: ",
+        "colorHi": "#e60000",
+        "colorWarn": "#ff9900",
+        "colorNormal": "#00b33c",
+        "colorOff": "#595959",
+        "min": 0,
+        "max": "250",
+        "segWarn": "50",
+        "segHigh": "125",
+        "unit": "W",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "reactive",
+        "shape": "3",
+        "colorschema": "fixed",
+        "textoptions": "custom",
+        "colorText": "#eeeeee",
+        "fontLabel": ".9",
+        "fontValue": ".9",
+        "fontSmall": ".8",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": true,
+        "property": "payload",
+        "peaktime": "1000",
+        "x": 1540,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "3d5fc9a37c22e227",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "name": "Trigger Query : PWR",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": ".5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 1780,
+        "y": 1220,
+        "wires": [
+            [
+                "1e912eb2cfd1398b"
+            ]
+        ]
+    },
+    {
+        "id": "a989e60f119ad0e7",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "name": "Trigger Query : REFL",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": ".5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 1780,
+        "y": 1280,
+        "wires": [
+            [
+                "7f6496cb0cda05a3"
+            ]
+        ]
+    },
+    {
+        "id": "1e912eb2cfd1398b",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2090,
+        "y": 1220,
+        "wires": [
+            [
+                "5c784e70a0615b69"
+            ]
+        ]
+    },
+    {
+        "id": "7f6496cb0cda05a3",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2030,
+        "y": 1280,
+        "wires": [
+            [
+                "dff56518bf493a98"
+            ]
+        ]
+    },
+    {
+        "id": "5c784e70a0615b69",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : PWR",
+        "func": "msg.payload = \"PWR\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2250,
+        "y": 1220,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "dff56518bf493a98",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : REFL",
+        "func": "msg.payload = \"REFL\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2200,
+        "y": 1280,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "1e503f0b7f2d2748",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse FWD Power",
+        "func": "\nif (msg.po != undefined) {\n    msg.payload = msg.po;\n    return msg;\n}\n    \nvar bandString = msg.payload.indexOf('FWD = ');\n\nvar bandStringLength = msg.payload.length;\n\nvar pwr = (msg.payload.substr(bandString + 6, bandStringLength)).replace(/\\s+/g, ' ').trim();\n\nmsg.bandString = bandString;\nmsg.bandStringLength = bandStringLength;\nmsg.pwr = pwr;\nmsg.payload = pwr;\nreturn msg;    \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1120,
+        "wires": [
+            [
+                "fcd84c9c0ac4e8ac"
+            ]
+        ]
+    },
+    {
+        "id": "4519a70934d066d1",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse REFL Power",
+        "func": "\nif (msg.pr != undefined) {\n    msg.payload = msg.pr;\n    return msg;\n}\n\nvar bandString = msg.payload.indexOf('RFL = ');\nvar bandStringLength = msg.payload.length;\nvar pwr = (msg.payload.substr(bandString + 6, bandStringLength)).replace(/\\s+/g, ' ').trim();\n\nmsg.bandString = bandString;\nmsg.bandStringLength = bandStringLength;\nmsg.pwr = pwr;\nmsg.payload = pwr;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1180,
+        "wires": [
+            [
+                "612fcded77b845f4"
+            ]
+        ]
+    },
+    {
+        "id": "e4ebf8f7522dff96",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "name": "Trigger Query : Grid Current",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": ".5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 2140,
+        "y": 320,
+        "wires": [
+            [
+                "3aef13236e4a7462"
+            ]
+        ]
+    },
+    {
+        "id": "3aef13236e4a7462",
+        "type": "gate",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "statusCmd": "status",
+        "persist": false,
+        "storeName": "memory",
+        "x": 2630,
+        "y": 320,
+        "wires": [
+            [
+                "a4d55f43e0631f00"
+            ]
+        ]
+    },
+    {
+        "id": "a4d55f43e0631f00",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : GRID",
+        "func": "msg.payload = \"GRID\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2800,
+        "y": 320,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "27e3f90be3e3bf3d",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Amp State",
+        "func": "\nmsg.payload = msg.payload.trim() == 'AMPLIFIER IS ON' ? 1 : 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1240,
+        "wires": [
+            [
+                "1f06704a63f507b5"
+            ]
+        ]
+    },
+    {
+        "id": "4b5749db70e5d852",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Power Off",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 1020,
+        "wires": [
+            [
+                "81556e0ea17afa32"
+            ]
+        ]
+    },
+    {
+        "id": "12d5b38b99bc4482",
+        "type": "debug",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "4e5c5e9358221a57",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Warmup",
+        "func": "\nmsg.payload = 'WARMUP';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1300,
+        "wires": [
+            [
+                "8625dff36abd4074"
+            ]
+        ]
+    },
+    {
+        "id": "3d1b326218988669",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set Grid UI Control Values",
+        "func": "\nmsg = {payload: msg.payload, control: {label: 'mA :', min: 0, max: 1500, value_channel_0: 'mA'}, topic: 'Plate: <font color=\"gray\">HV | </font><font color=\"#66ff66\">IP</font>'};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1940,
+        "y": 720,
+        "wires": [
+            [
+                "d741011492e70188",
+                "1057ba31fcdbfbfc"
+            ]
+        ]
+    },
+    {
+        "id": "d741011492e70188",
+        "type": "ui_switch",
+        "z": "23fb3158e132e84d",
+        "name": "Plate HV / Grid",
+        "label": "{{msg.topic}}",
+        "tooltip": "",
+        "group": "8495b55a41b65a7f",
+        "order": 10,
+        "width": "5",
+        "height": "4",
+        "passthru": false,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "GRID",
+        "onvalueType": "str",
+        "onicon": "fa-toggle-on fa-lg",
+        "oncolor": "#66ff66",
+        "offvalue": "HV",
+        "offvalueType": "str",
+        "officon": "fa-toggle-on fa-lg fa-rotate-180",
+        "offcolor": "#66ff66",
+        "animate": true,
+        "x": 1500,
+        "y": 800,
+        "wires": [
+            [
+                "8c64e991751722de"
+            ]
+        ]
+    },
+    {
+        "id": "8c64e991751722de",
+        "type": "switch",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "GRID",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1650,
+        "y": 800,
+        "wires": [
+            [
+                "3d1b326218988669",
+                "3062c4051bcd652f"
+            ],
+            [
+                "45bcf1332e85cce7",
+                "9d657e668a54f2ab"
+            ]
+        ]
+    },
+    {
+        "id": "45bcf1332e85cce7",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set HV UI Control Values",
+        "func": "\nmsg = {payload: msg.payload, control: {label: 'volts :', min: 0, max: 3000, value_channel_0: 'V'}, topic: 'Plate: <font color=\"#66ff66\">HV</font><font color=\"gray\"> | IP</font> '};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1930,
+        "y": 860,
+        "wires": [
+            [
+                "d741011492e70188",
+                "1057ba31fcdbfbfc"
+            ]
+        ]
+    },
+    {
+        "id": "3062c4051bcd652f",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set METER IP",
+        "func": "\nmsg.payload = \"METER IP\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 780,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "9d657e668a54f2ab",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set METER HV",
+        "func": "\nmsg.payload = \"METER HV\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2240,
+        "y": 820,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "1057ba31fcdbfbfc",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Reset Meter value",
+        "func": "\nmsg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1910,
+        "y": 920,
+        "wires": [
+            [
+                "5998c38d071a1f3f"
+            ]
+        ]
+    },
+    {
+        "id": "cf86de34ffc9d162",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Plate Current",
+        "func": "\nif (msg.ip != undefined) {\n    msg.payload = msg.ip;\n    return msg;\n}\n\namps = parseInt(parseFloat(msg.payload.substr(4,9)) * 1000);\nmsg.payload = amps;\n\nif (isNaN(msg.payload)) {\n    // msg.payload = 0;   \n} \n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1360,
+        "wires": [
+            [
+                "5998c38d071a1f3f"
+            ]
+        ]
+    },
+    {
+        "id": "4a1d36169cf540c5",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Grid Current",
+        "func": "\nif (msg.ig != undefined) {\n    msg.payload = msg.ig;\n    return msg;\n}\n\namps = parseInt(parseFloat(msg.payload.substr(4,9)));\nmsg.payload = amps;\n\nif (isNaN(msg.payload)) {\n    msg.payload = 0;   \n} \n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1420,
+        "wires": [
+            [
+                "82973c84294faad7"
+            ]
+        ]
+    },
+    {
+        "id": "82973c84294faad7",
+        "type": "ui_level",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "order": 8,
+        "width": "5",
+        "height": "3",
+        "name": "Grid mA",
+        "label": "Ig mA:",
+        "colorHi": "#e60000",
+        "colorWarn": "#ff9900",
+        "colorNormal": "#00b33c",
+        "colorOff": "#595959",
+        "min": 0,
+        "max": "150",
+        "segWarn": "100",
+        "segHigh": "115",
+        "unit": "",
+        "layout": "sh",
+        "channelA": "",
+        "channelB": "",
+        "decimals": 0,
+        "animations": "reactive",
+        "shape": "3",
+        "colorschema": "fixed",
+        "textoptions": "custom",
+        "colorText": "#eeeeee",
+        "fontLabel": ".9",
+        "fontValue": ".9",
+        "fontSmall": ".8",
+        "colorFromTheme": true,
+        "textAnimations": false,
+        "hideValue": false,
+        "tickmode": "off",
+        "peakmode": true,
+        "property": "payload",
+        "peaktime": "1000",
+        "x": 1520,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "6e1d5cfc5bda3a56",
+        "type": "comment",
+        "z": "23fb3158e132e84d",
+        "name": "Alpha 87A Flow - Read Me",
+        "info": "******************************************************************\nVersion: v0.9.1 BETA\nInitial Release:: 30 August 2021 (v0.9.0)\nAuthor: Kelly Jones - N0VD\nCurrent Version: https://github.com/blindvillian/nodered\nDescription: Flow to remotely control an Alpha 87A amp\n\nFlow is currently configured to use a USB-Serial cable directly \nconnected to a Raspberry PI. It's best to configure the PI to \nalways assign the same USB \"device\" to ensure the flow is able \nto connect to the amp. This flow is using the name ttyUSB_Alpha87A. \nConfiguration using udev is beyond the scope of this doc.\n\nv0.9.1 : 4 Sept 2021\n  Greatly expanded features and functionality so flow will work with\n  87As without the AlphaMax software. Also updated the UI to be more \n  appealing than the out of the box theme.\n\n\n\n******************************************************************\n\n",
+        "x": 130,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "bef29593301827b5",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "10M",
+        "group": "8495b55a41b65a7f",
+        "order": 15,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "10M",
+        "tooltip": "10 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "9",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1480,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "fe0a628005780e4b",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "12M",
+        "group": "8495b55a41b65a7f",
+        "order": 16,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "12M",
+        "tooltip": "12 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "8",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1520,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "207044d488c6152f",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "15M",
+        "group": "8495b55a41b65a7f",
+        "order": 17,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "15M",
+        "tooltip": "15 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "7",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1560,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "658eeea899c3ab90",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "17M",
+        "group": "8495b55a41b65a7f",
+        "order": 18,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "17M",
+        "tooltip": "17 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "6",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1610,
+        "y": 1600,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "9b4132798ff674c6",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "20M",
+        "group": "8495b55a41b65a7f",
+        "order": 19,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "20M",
+        "tooltip": "20 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "5",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1640,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "34a65dab5852c8e8",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "30M",
+        "group": "8495b55a41b65a7f",
+        "order": 21,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "30M",
+        "tooltip": "30 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1680,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "f3e554b445c49478",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "40M",
+        "group": "8495b55a41b65a7f",
+        "order": 22,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "40M",
+        "tooltip": "40 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1610,
+        "y": 1720,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "5687f660ef659323",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "80M",
+        "group": "8495b55a41b65a7f",
+        "order": 23,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "80M",
+        "tooltip": "80 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1610,
+        "y": 1760,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "ba52b394996bc837",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "160M",
+        "group": "8495b55a41b65a7f",
+        "order": 24,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "160M",
+        "tooltip": "160 Meters",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 1610,
+        "y": 1800,
+        "wires": [
+            [
+                "e405f3661065cdad"
+            ]
+        ]
+    },
+    {
+        "id": "db328708c30b5745",
+        "type": "ui_button",
+        "z": "23fb3158e132e84d",
+        "name": "AlphaMax",
+        "group": "8495b55a41b65a7f",
+        "order": 25,
+        "width": "1",
+        "height": "4",
+        "passthru": false,
+        "label": "AMAX",
+        "tooltip": "AlphaMax ON/OFF",
+        "color": "",
+        "bgcolor": "{{msg.bgcolor}}",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 1620,
+        "y": 1840,
+        "wires": [
+            [
+                "a93b86573de505a5"
+            ]
+        ]
+    },
+    {
+        "id": "dbfc9026.affcc",
+        "type": "ui_template",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "name": "Segment Selection Widget",
+        "order": 27,
+        "width": "5",
+        "height": "4",
+        "format": "<div>\n    <span style=\"margin-right:15px;\">Segment: <font color=\"{{msg.bandSegmentValueFontColor}}\">{{msg.frequency}}</font></span>\n    <span id=\"segment-down\" style=\"margin-left:6px; float:right\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-down segment-down\" aria-label=\"Down\"></md-button>\n    </span>\n    <span id=\"segment-up\" style=\"float:right;\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-up segment-up\" aria-label=\"Up\"></md-button>\n    </span>\n\n    <script>\n        (function($scope) {\n            $('#segment-down').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'segment', 'action':'down'});\n            });\n            $('#segment-up').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'segment', 'action':'up'});\n            });\n        })(scope);\n    </script>\n</div>    \n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1440,
+        "y": 1900,
+        "wires": [
+            [
+                "4c930482ca536c0c"
+            ]
+        ]
+    },
+    {
+        "id": "dc329c1ad550ef4c",
+        "type": "ui_template",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "name": "Tune Selection Widget",
+        "order": 28,
+        "width": "5",
+        "height": "4",
+        "format": "<div>\n    <span style=\"margin-right:15px;\">Tune: <font color=\"{{msg.bandTuneValueFontColor}}\">{{msg.tune}}</font></span>\n    <span id=\"tune-down\" style=\"margin-left:6px; float:right\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-down tune-down\" aria-label=\"Down\"></md-button>\n    </span>\n    <span id=\"tune-up\" style=\"float:right;\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-up tune-up\" aria-label=\"Up\"></md-button>\n    </span>\n\n    <script>\n        (function($scope) {\n            $('#tune-down').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'tune', 'action': 'down'});\n            });\n            $('#tune-up').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'tune', 'action': 'up'});\n            });\n        })(scope);\n    </script>\n</div>     \n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1420,
+        "y": 1940,
+        "wires": [
+            [
+                "4c930482ca536c0c"
+            ]
+        ]
+    },
+    {
+        "id": "cc124987235013b5",
+        "type": "ui_template",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "name": "Load Selection Widget",
+        "order": 29,
+        "width": "5",
+        "height": "4",
+        "format": "<div>\n    <span style=\"margin-right:15px;\">Load: <font color=\"{{msg.bandLoadValueFontColor}}\">{{msg.load}}</font></span>\n    <span id=\"load-down\" style=\"margin-left:6px; float:right\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-down load-down\" aria-label=\"Down\"></md-button>\n    </span>\n    <span id=\"load-up\" style=\"float:right;\">\n        <md-button class=\"md-button remote-button bigger fa fa-chevron-up load-up\" aria-label=\"Up\"></md-button>\n    </span>\n\n    <script>\n        (function($scope) {\n            $('#load-down').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'load', 'action': 'down'});\n            });\n            $('#load-up').on('click', function(e) {\n                e.preventDefault();\n                $scope.send({'func':'load', 'action': 'up'});\n            });\n        })(scope);\n    </script>\n</div>     \n",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1420,
+        "y": 1980,
+        "wires": [
+            [
+                "4c930482ca536c0c"
+            ]
+        ]
+    },
+    {
+        "id": "a5e5f37af4f1d21c",
+        "type": "ui_template",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "name": "Global Style Overrides",
+        "order": 30,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n/* Load Control Down Button */\n[node-id=\"94d0f0131fd1df39\"] > button {\n    left: 40px !important; \n    width: 88px !important; \n    height: 35px !important; //\n}\n\n[node-id=\"dbfc9026.affcc\"] {\n    overflow: hidden;\n}\n\n.segment-up, .segment-down, .tune-up, .tune-down, .load-down, .load-up {\n    min-height: 25px !important;\n}\n\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "x": 920,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b2dcbe09051b027",
+        "type": "inject",
+        "z": "23fb3158e132e84d",
+        "name": "Trigger - Test Message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 2120,
+        "y": 140,
+        "wires": [
+            [
+                "3d6b4e72126fa809"
+            ]
+        ]
+    },
+    {
+        "id": "3d6b4e72126fa809",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : Test Message",
+        "func": "\nmsg.payload = \"STAT\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2740,
+        "y": 140,
+        "wires": [
+            [
+                "71671e3df5feb2e0"
+            ]
+        ]
+    },
+    {
+        "id": "dd5b06c0d6283e65",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Amp Off - Set Default Values",
+        "func": "\n// Set Amp Off Defaults\nmsg.po = 0;\nmsg.pr = 0;\nmsg.volts = 0;\nmsg.ig = 0;\nmsg.ip = 0;\nmsg.band = '--';\nmsg.fontcolor = \"gray\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1300,
+        "wires": [
+            [
+                "c047fc55073bdc6c",
+                "1e503f0b7f2d2748",
+                "4519a70934d066d1",
+                "cf86de34ffc9d162",
+                "4a1d36169cf540c5"
+            ]
+        ]
+    },
+    {
+        "id": "916fdf15900a5fa9",
+        "type": "debug",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2910,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "e405f3661065cdad",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set Band",
+        "func": "\n// Adding function to interpret the button click.\n// My amp seemed very picky using the button's payload.\nmsg.payload = 'BAND ' + msg.payload + '\\r\\n'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 1640,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "401398e6066bf7c5",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 10M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 28000 && msg.payload <= 30000) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1480,
+        "wires": [
+            [
+                "bef29593301827b5"
+            ]
+        ]
+    },
+    {
+        "id": "d6a648f26c8e81ae",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 12M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 24550 && msg.payload <= 24990) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1520,
+        "wires": [
+            [
+                "fe0a628005780e4b"
+            ]
+        ]
+    },
+    {
+        "id": "10864ae7e6d3bd5f",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 15M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 21000 && msg.payload <= 21450) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1560,
+        "wires": [
+            [
+                "207044d488c6152f"
+            ]
+        ]
+    },
+    {
+        "id": "7c7718a2ec71254d",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 17M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 18068 && msg.payload <= 18168) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1600,
+        "wires": [
+            [
+                "658eeea899c3ab90"
+            ]
+        ]
+    },
+    {
+        "id": "5959f3076a9e72d4",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 20M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 14000 && msg.payload <= 14350) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1640,
+        "wires": [
+            [
+                "9b4132798ff674c6"
+            ]
+        ]
+    },
+    {
+        "id": "e812bcf264f4ce87",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 30M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 10100 && msg.payload <= 10150) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1680,
+        "wires": [
+            [
+                "34a65dab5852c8e8"
+            ]
+        ]
+    },
+    {
+        "id": "435c6f667921ea2e",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 40M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 7000 && msg.payload <= 7300) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1720,
+        "wires": [
+            [
+                "f3e554b445c49478"
+            ]
+        ]
+    },
+    {
+        "id": "0cfa81fc48de3d80",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 80M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 3500 && msg.payload <= 4000) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1760,
+        "wires": [
+            [
+                "5687f660ef659323"
+            ]
+        ]
+    },
+    {
+        "id": "fe6a37f6f8afe39e",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set 160M Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 1800 && msg.payload <= 2000) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 1800,
+        "wires": [
+            [
+                "ba52b394996bc837"
+            ]
+        ]
+    },
+    {
+        "id": "cb1857a4ea5cdda3",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set AMAX Button Color",
+        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload == true) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 1840,
+        "wires": [
+            [
+                "db328708c30b5745"
+            ]
+        ]
+    },
+    {
+        "id": "051511596eee722f",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Frequency",
+        "func": "var shutdown = msg.shutdown == true;\nvar freqString = msg.payload.indexOf('FREQUENCY = ');\nmsg.x = msg.payload.length + 11;\nmsg.y = freqString + 11;\nmsg.z = msg.payload.length - 7;\nmsg.b = freqString;\n\nmsg.c = khzIndex = msg.payload.indexOf('kHz')\n\n\nvar freq = (msg.payload.substr(11, msg.payload.indexOf('kHz') - 11)).replace(/\\s+/g, ' ').trim();\n\nmsg.payload = freq;\n\nreturn {payload: freq, frequency: freq, bandSegmentValueFontColor: shutdown ? 'gray' : '#d7d7a0'};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 1480,
+        "wires": [
+            [
+                "401398e6066bf7c5",
+                "d6a648f26c8e81ae",
+                "10864ae7e6d3bd5f",
+                "7c7718a2ec71254d",
+                "5959f3076a9e72d4",
+                "e812bcf264f4ce87",
+                "435c6f667921ea2e",
+                "0cfa81fc48de3d80",
+                "fe6a37f6f8afe39e",
+                "dbfc9026.affcc"
+            ]
+        ]
+    },
+    {
+        "id": "4c930482ca536c0c",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set Segment/Tune/Load Message",
+        "func": "\nvar cmd = (msg.action == 'down' ? 'DOWN' : 'UP') + '\\r\\n';\n\nswitch(msg.func) {\n    case 'segment':\n        cmd = 'SEG ' + cmd; \n        break;\n    case 'load':\n        cmd = 'LOAD ' + cmd; \n        break;\n    case 'tune':\n        cmd = 'TUNE ' + cmd; \n        break;\n}\n\nmsg.payload = cmd\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 1900,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "1176213b8d411366",
+        "type": "ui_template",
+        "z": "23fb3158e132e84d",
+        "group": "8495b55a41b65a7f",
+        "name": "Band Top HR",
+        "order": 13,
+        "width": "5",
+        "height": "1",
+        "format": "<div style=\"height:auto;\">\n<hr style=\n    \"border-top: 1px solid #a39d99;\n    border-width: 0px 0px 0;\n    width: 100%;\n    margin-left: auto;\n    margin-right: auto;\n    height: 0px;\n    margin-top: 0;\n    border-bottom: 1px solid #a39d99;\n    box-shadow: 0 0 3px #a39d99\";\n\t>\n</div>  ",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 890,
+        "y": 1960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "300feb7ce8859a89",
+        "type": "comment",
+        "z": "23fb3158e132e84d",
+        "name": "Non Functional UI Elements",
+        "info": "The nodes below here are non-function UI elements.\n\n - Global Style Overrides\n - Band Top HR",
+        "x": 940,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "d240e5c35504336b",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Load",
+        "func": "\nvar shutdown = msg.shutdown == true;\nvar loadString = msg.payload.indexOf('LOAD = ');\nvar load = (msg.payload.substr(loadString + 7, 4)).replace(/\\s+/g, ' ').trim();\n\nmsg.load = load;\nmsg.bandLoadValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1660,
+        "wires": [
+            [
+                "cc124987235013b5"
+            ]
+        ]
+    },
+    {
+        "id": "2bbe722a3eb81a84",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse Tune",
+        "func": "\nvar shutdown = msg.shutdown == true;\nvar tuneString = msg.payload.indexOf('TUNE = ');\nvar tune = (msg.payload.substr(tuneString + 7, 4)).replace(/\\s+/g, ' ').trim();\n\nmsg.tune = tune;\nmsg.bandTuneValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1600,
+        "wires": [
+            [
+                "dc329c1ad550ef4c"
+            ]
+        ]
+    },
+    {
+        "id": "7ddd8dbd1e39c376",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse AlphaMax Enabled",
+        "func": "\nvar enabled = msg.payload.indexOf('ENABLED') > -1 ? true : false;\nflow.set('alphaMaxEnabled', enabled);\nmsg.payload = enabled;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 1540,
+        "wires": [
+            [
+                "cb1857a4ea5cdda3"
+            ]
+        ]
+    },
+    {
+        "id": "a93b86573de505a5",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set AlphaMax ON/OFF",
+        "func": "\nvar enabled = flow.get('alphaMaxEnabled') || false;\n\nmsg.payload = enabled ? 'AUTOTUNE OFF\\r\\n' : 'AUTOTUNE ON\\r\\n';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 1840,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "3654918b4f59946c",
+        "type": "ui_switch",
+        "z": "23fb3158e132e84d",
+        "name": "HV Hi / Low",
+        "label": "Voltage: <font color='{{msg.fontcolor}}'>{{msg.label}}</font>",
+        "tooltip": "",
+        "group": "8495b55a41b65a7f",
+        "order": 4,
+        "width": "5",
+        "height": "4",
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "HIGH",
+        "onvalueType": "str",
+        "onicon": "fa-toggle-on fa-lg",
+        "oncolor": "#66ff66",
+        "offvalue": "LOW",
+        "offvalueType": "str",
+        "officon": "fa-toggle-on fa-lg fa-rotate-180",
+        "offcolor": "gray",
+        "animate": true,
+        "x": 1530,
+        "y": 980,
+        "wires": [
+            [
+                "3aedea9ff0c4df9d"
+            ]
+        ]
+    },
+    {
+        "id": "c8d9aa4b4e0a013d",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Parse HV Mode",
+        "func": "if (msg.label != undefined) {\n    msg.label = msg.label;\n    msg.fontcolor = msg.fontcolor;\n    return message;\n}\n\nvar modeString = msg.payload.indexOf('MODE = ');\nvar mode = (msg.payload.substr(modeString + 7, 5)).replace(/\\s+/g, ' ').trim();\n\nmsg.payload = mode;\nmsg.label = mode == 'HIGH' ? 'High' : 'Low';\nmsg.fontcolor = '#4CE05E';\nmsg.colour = 'red';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 1000,
+        "wires": [
+            [
+                "3654918b4f59946c"
+            ]
+        ]
+    },
+    {
+        "id": "012aca8df6481613",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "--",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "fontcolor",
+                "pt": "msg",
+                "to": "gray",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63aea0b7b4ad1ae3",
+        "type": "change",
+        "z": "23fb3158e132e84d",
+        "name": "Set Voltage to --",
+        "rules": [
+            {
+                "t": "set",
+                "p": "label",
+                "pt": "msg",
+                "to": "--",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "fontcolor",
+                "pt": "msg",
+                "to": "gray",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "LOW",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 960,
+        "wires": [
+            [
+                "3654918b4f59946c"
+            ]
+        ]
+    },
+    {
+        "id": "3aedea9ff0c4df9d",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set MODE HIGH / LOW",
+        "func": "\nmsg.payload = msg.payload == 'HIGH' ? 'MODE HIGH\\r\\n' : 'MODE LOW\\r\\n';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1750,
+        "y": 980,
+        "wires": [
+            [
+                "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "ea7db2b8e3760723",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 5,
+        "width": "5",
+        "height": 1
+    },
+    {
+        "id": "0ef4833dfbd13f93",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 9,
+        "width": "5",
+        "height": 1
+    },
+    {
+        "id": "044f0108df3131be",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 12,
+        "width": "5",
+        "height": "1"
+    },
+    {
+        "id": "8fbc8ffe6c448cec",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 14,
+        "width": "5",
+        "height": 1
+    },
+    {
+        "id": "b76398b2f1979c53",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 20,
+        "width": "5",
+        "height": 1
+    },
+    {
+        "id": "81b12bfbee53e923",
+        "type": "ui_spacer",
+        "z": "23fb3158e132e84d",
+        "name": "spacer",
+        "group": "8495b55a41b65a7f",
+        "order": 26,
+        "width": "5",
+        "height": 1
+    },
+    {
+        "id": "2b1f54984092d2bb",
+        "type": "serial-port",
+        "serialport": "/dev/ttyUSB_Alpha87A",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "100"
+    },
+    {
+        "id": "8495b55a41b65a7f",
+        "type": "ui_group",
+        "name": "Alpha 87A",
+        "tab": "e5c51938e2cff19c",
+        "order": 1,
+        "disp": true,
+        "width": "5",
+        "collapse": false
+    },
+    {
+        "id": "e5c51938e2cff19c",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
