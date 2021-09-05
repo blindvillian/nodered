@@ -5,7 +5,9 @@ Node Red flows to control an Alpha 87A amplifier.
 
 -- alpha_87a_full is a full featured NR flow that allows for 87As with or without the AlphaMax software to be remotely controlled.
 
-Flow is currently configured to use a USB-Serial cable directly connected to a Raspberry PI. It's best to configure the PI to always assign the same USB "device" to ensure the flow is able to connect to the amp. This flow is using the name ttyUSB_Alpha87A. Configuration using udev is beyond the scope of this doc, however, this link should get your going.  https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+Flow is currently configured to use a USB-Serial cable directly connected to a Raspberry PI. It's best to configure the PI to always assign the same USB "device" to ensure the flow is able to connect to the amp. This flow is using the name ttyUSB_Alpha87A. Configuration using udev is beyond the scope of this doc, however, these links should get your going. 
+  https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+  https://askubuntu.com/questions/978485/udev-rule-with-serial-for-ttyusb-not-working
 
 Enjoy!
 Kelly - N0VD       
