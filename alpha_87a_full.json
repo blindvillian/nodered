@@ -108,7 +108,8 @@
         "wires": [
             [
                 "7256c9fd1c5b739b",
-                "71671e3df5feb2e0"
+                "71671e3df5feb2e0",
+                "0813dd58b2d06326"
             ]
         ]
     },
@@ -130,7 +131,7 @@
                 "55c6fcd286ea29fa",
                 "71671e3df5feb2e0",
                 "86d106a9f6c699ed",
-                "012aca8df6481613"
+                "7500997011d94c80"
             ]
         ]
     },
@@ -166,9 +167,9 @@
             [
                 "3aef13236e4a7462",
                 "e1563be442ad3e02",
-                "0002cd80e80a6340",
                 "1e912eb2cfd1398b",
-                "7f6496cb0cda05a3"
+                "7f6496cb0cda05a3",
+                "4369759140525ea0"
             ]
         ]
     },
@@ -204,9 +205,9 @@
             [
                 "3aef13236e4a7462",
                 "e1563be442ad3e02",
-                "0002cd80e80a6340",
                 "1e912eb2cfd1398b",
-                "7f6496cb0cda05a3"
+                "7f6496cb0cda05a3",
+                "4369759140525ea0"
             ]
         ]
     },
@@ -216,7 +217,7 @@
         "z": "23fb3158e132e84d",
         "name": "",
         "controlTopic": "control",
-        "defaultState": "open",
+        "defaultState": "closed",
         "openCmd": "open",
         "closeCmd": "close",
         "toggleCmd": "toggle",
@@ -521,28 +522,6 @@
         "y": 200,
         "wires": [
             [
-                "0002cd80e80a6340"
-            ]
-        ]
-    },
-    {
-        "id": "0002cd80e80a6340",
-        "type": "gate",
-        "z": "23fb3158e132e84d",
-        "name": "",
-        "controlTopic": "control",
-        "defaultState": "closed",
-        "openCmd": "open",
-        "closeCmd": "close",
-        "toggleCmd": "toggle",
-        "defaultCmd": "default",
-        "statusCmd": "status",
-        "persist": false,
-        "storeName": "memory",
-        "x": 2630,
-        "y": 200,
-        "wires": [
-            [
                 "0a0d7d6e48ff6212"
             ]
         ]
@@ -558,11 +537,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2790,
+        "x": 2770,
         "y": 200,
         "wires": [
             [
-                "4369759140525ea0"
+                "71671e3df5feb2e0"
             ]
         ]
     },
@@ -572,7 +551,7 @@
         "z": "23fb3158e132e84d",
         "name": "",
         "controlTopic": "control",
-        "defaultState": "open",
+        "defaultState": "closed",
         "openCmd": "open",
         "closeCmd": "close",
         "toggleCmd": "toggle",
@@ -580,7 +559,7 @@
         "statusCmd": "status",
         "persist": false,
         "storeName": "memory",
-        "x": 2630,
+        "x": 2530,
         "y": 260,
         "wires": [
             [
@@ -599,7 +578,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2800,
+        "x": 2720,
         "y": 260,
         "wires": [
             [
@@ -1009,7 +988,7 @@
         "z": "23fb3158e132e84d",
         "name": "",
         "controlTopic": "control",
-        "defaultState": "open",
+        "defaultState": "closed",
         "openCmd": "open",
         "closeCmd": "close",
         "toggleCmd": "toggle",
@@ -1031,7 +1010,7 @@
         "z": "23fb3158e132e84d",
         "name": "",
         "controlTopic": "control",
-        "defaultState": "open",
+        "defaultState": "closed",
         "openCmd": "open",
         "closeCmd": "close",
         "toggleCmd": "toggle",
@@ -1157,7 +1136,7 @@
         "z": "23fb3158e132e84d",
         "name": "",
         "controlTopic": "control",
-        "defaultState": "open",
+        "defaultState": "closed",
         "openCmd": "open",
         "closeCmd": "close",
         "toggleCmd": "toggle",
@@ -1165,7 +1144,7 @@
         "statusCmd": "status",
         "persist": false,
         "storeName": "memory",
-        "x": 2630,
+        "x": 2530,
         "y": 320,
         "wires": [
             [
@@ -1184,7 +1163,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2800,
+        "x": 2720,
         "y": 320,
         "wires": [
             [
@@ -1965,7 +1944,7 @@
         "type": "debug",
         "z": "23fb3158e132e84d",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2000,7 +1979,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Set 10M Button Color",
-        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 28000 && msg.payload <= 30000) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "func": "\nvar shutdown = msg.frequency == true;\n\nmsg.bgcolor = (!shutdown && msg.payload >= 28000 && msg.payload <= 30000) ? '#0fa9b0' : '#097479';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2171,7 +2150,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Set AMAX Button Color",
-        "func": "\nvar shutdown = msg.shutdown == true;\n\nmsg.bgcolor = (!shutdown && msg.payload == true) ? '#0fa9b0' : '#097479';\nreturn msg;",
+        "func": "\nmsg.bgcolor = msg.payload == true ? '#0fa9b0' : '#097479';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2190,7 +2169,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Parse Frequency",
-        "func": "var shutdown = msg.shutdown == true;\nvar freqString = msg.payload.indexOf('FREQUENCY = ');\nmsg.x = msg.payload.length + 11;\nmsg.y = freqString + 11;\nmsg.z = msg.payload.length - 7;\nmsg.b = freqString;\n\nmsg.c = khzIndex = msg.payload.indexOf('kHz')\n\n\nvar freq = (msg.payload.substr(11, msg.payload.indexOf('kHz') - 11)).replace(/\\s+/g, ' ').trim();\n\nmsg.payload = freq;\n\nreturn {payload: freq, frequency: freq, bandSegmentValueFontColor: shutdown ? 'gray' : '#d7d7a0'};",
+        "func": "var shutdown = msg.shutdown == true;\nvar freq = '';\n\nif (shutdown) {\n    freq = '--';\n} else {\n    var freqString = msg.payload.indexOf('FREQUENCY = ');\n    msg.x = msg.payload.length + 11;\n    msg.y = freqString + 11;\n    msg.z = msg.payload.length - 7;\n    msg.b = freqString;\n    \n    msg.c = khzIndex = msg.payload.indexOf('kHz')\n    \n    freq = (msg.payload.substr(11, msg.payload.indexOf('kHz') - 11)).replace(/\\s+/g, ' ').trim();\n}\n\nreturn {payload: freq, frequency: freq, bandSegmentValueFontColor: shutdown ? 'gray' : '#d7d7a0', shutdown: shutdown};",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2267,7 +2246,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Parse Load",
-        "func": "\nvar shutdown = msg.shutdown == true;\nvar loadString = msg.payload.indexOf('LOAD = ');\nvar load = (msg.payload.substr(loadString + 7, 4)).replace(/\\s+/g, ' ').trim();\n\nmsg.load = load;\nmsg.bandLoadValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
+        "func": "\nvar shutdown = msg.shutdown == true;\nvar load = '';\n\nif (shutdown) {\n    load = '--';\n} else {\n    var loadString = msg.payload.indexOf('LOAD = ');\n    load = (msg.payload.substr(loadString + 7, 4)).replace(/\\s+/g, ' ').trim();\n}\n\nmsg.load = load;\nmsg.bandLoadValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2286,7 +2265,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Parse Tune",
-        "func": "\nvar shutdown = msg.shutdown == true;\nvar tuneString = msg.payload.indexOf('TUNE = ');\nvar tune = (msg.payload.substr(tuneString + 7, 4)).replace(/\\s+/g, ' ').trim();\n\nmsg.tune = tune;\nmsg.bandTuneValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
+        "func": "var shutdown = msg.shutdown == true;\nvar tune = '';\n\nif (shutdown) {\n    tune = '--'\n} else {\n    var tuneString = msg.payload.indexOf('TUNE = ');\n    tune = (msg.payload.substr(tuneString + 7, 4)).replace(/\\s+/g, ' ').trim();\n}\n\nmsg.tune = tune;\nmsg.bandTuneValueFontColor = shutdown ? 'gray' : '#d7d7a0';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2305,7 +2284,7 @@
         "type": "function",
         "z": "23fb3158e132e84d",
         "name": "Parse AlphaMax Enabled",
-        "func": "\nvar enabled = msg.payload.indexOf('ENABLED') > -1 ? true : false;\nflow.set('alphaMaxEnabled', enabled);\nmsg.payload = enabled;\n\nreturn msg;\n",
+        "func": "var shutdown = msg.shutdown == true;\nvar enabled = false;\n\nif (!shutdown) {\n    enabled = msg.payload.indexOf('ENABLED') > -1 ? true : false;\n    flow.set('alphaMaxEnabled', enabled);\n} else {\n    flow.set('alphaMaxEnabled', undefined);\n}\n\nmsg.payload = enabled;\n\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2391,38 +2370,6 @@
         ]
     },
     {
-        "id": "012aca8df6481613",
-        "type": "change",
-        "z": "23fb3158e132e84d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "label",
-                "pt": "msg",
-                "to": "--",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "fontcolor",
-                "pt": "msg",
-                "to": "gray",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1000,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "63aea0b7b4ad1ae3",
         "type": "change",
         "z": "23fb3158e132e84d",
@@ -2479,6 +2426,95 @@
         "wires": [
             [
                 "4369759140525ea0"
+            ]
+        ]
+    },
+    {
+        "id": "f381ebbbd5409a10",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Set Power Off Values",
+        "func": "msg.shutdown = true;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 760,
+        "wires": [
+            [
+                "051511596eee722f",
+                "7ddd8dbd1e39c376",
+                "2bbe722a3eb81a84",
+                "d240e5c35504336b"
+            ]
+        ]
+    },
+    {
+        "id": "7500997011d94c80",
+        "type": "delay",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 1000,
+        "y": 680,
+        "wires": [
+            [
+                "f381ebbbd5409a10"
+            ]
+        ]
+    },
+    {
+        "id": "0813dd58b2d06326",
+        "type": "delay",
+        "z": "23fb3158e132e84d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "x": 1840,
+        "y": 480,
+        "wires": [
+            [
+                "3ebc8e7e4ad025f2"
+            ]
+        ]
+    },
+    {
+        "id": "3ebc8e7e4ad025f2",
+        "type": "function",
+        "z": "23fb3158e132e84d",
+        "name": "Query : STAT",
+        "func": "msg.payload = \"STAT\\r\\n\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2430,
+        "y": 540,
+        "wires": [
+            [
+                "71671e3df5feb2e0"
             ]
         ]
     },
